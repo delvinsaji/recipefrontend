@@ -7,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 function Main() {
   const [all_recipe, setAll_recipe] = useState();
   const [recipe1, setRecipe1] = useState();
+  const [add, setAdd] = useState("addrecipe");
   const { recipe } = useParams();
   const navigate = useNavigate();
+  const [ingredients, setIngredients] = useState([]);
+  const [ingredient, setIngredient] = useState();
   useEffect(() => {
     axios
       .get("https://recipe1api.herokuapp.com/api/all_recipe")
@@ -28,9 +31,9 @@ function Main() {
         alert(error.data);
       });
   }, [recipe]);
+  console.log(ingredients);
+  console.log(ingredient);
 
-  console.log(all_recipe);
-  console.log(recipe1);
   return (
     <div className="recipe">
       <div className="list">
@@ -49,7 +52,13 @@ function Main() {
               </div>
             ))
           : "null"}
-        <p>+ Add Recipe</p>
+        <p
+          onClick={() => {
+            setAdd("addrecipe1");
+          }}
+        >
+          + Add Recipe
+        </p>
       </div>
       <div className="desc">
         <div className="desc1">
@@ -74,6 +83,37 @@ function Main() {
               ))
             : "null"}
           <p className="e">+ Add Review</p>
+        </div>
+      </div>
+      <div className={add}>
+        <div className="mainform">
+          <p>Add Recipe</p>
+          <input type="text" placeholder="Name"></input>
+          {ingredients.map((obj) => (
+            <div className="ing">
+              <p>{obj}</p>
+              <img
+                src="https://cdn-icons.flaticon.com/png/128/1620/premium/1620739.png?token=exp=1654797391~hmac=477594fad0825da151a766ae15ed4bee"
+                width={10}
+              />
+            </div>
+          ))}
+          <input
+            type="text"
+            value={ingredient}
+            onChange={(e) => {
+              setIngredient(e.target.value);
+            }}
+            placeholder="Ingredients"
+            onKeyDown={(event) => {
+              if (event.key == "Enter") {
+                setIngredients([...ingredients, ingredient]);
+                setIngredient("");
+              }
+            }}
+          ></input>
+          <textarea placeholder="Preparation" rows={10} cols={60}></textarea>
+          <button>Add Recipe</button>
         </div>
       </div>
     </div>

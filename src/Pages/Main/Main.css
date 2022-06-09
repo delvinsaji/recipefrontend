@@ -65,3 +65,49 @@ h3 {
 .desc1 h2 {
   padding: 0px;
 }
+
+.addrecipe {
+  display: none;
+}
+
+.addrecipe1 {
+  position: absolute;
+  display: block;
+  width: 93%;
+  height: 92%;
+  background-color: rgba(128, 128, 128, 0.865);
+  border-radius: 10px;
+  margin: auto;
+}
+
+.mainform {
+  background-color: beige;
+  width: 70%;
+  height: 80%;
+  margin: auto;
+  border-radius: 10px;
+  margin-top: 50px;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.mainform button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.ing img {
+  padding-top: 5px;
+}
+
+.ing img:hover {
+  background-color: rgba(128, 128, 128, 0.45);
+}
