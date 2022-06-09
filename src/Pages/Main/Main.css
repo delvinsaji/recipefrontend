@@ -1,6 +1,6 @@
 .recipe {
   background-color: beige;
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   width: 93%;
@@ -13,5 +13,55 @@
 .list {
   width: 30%;
   height: 100%;
-  border-right: 1px solid black;
+}
+
+h3 {
+  font-weight: normal;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 15px;
+}
+
+.list p {
+  padding-left: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.list p:hover {
+  background-color: rgba(128, 128, 128, 0.299);
+}
+
+.desc {
+  width: 70%;
+  padding-left: 10px;
+  overflow-y: scroll;
+}
+
+.desc h2 {
+  padding-top: 10px;
+  font-weight: normal;
+}
+
+.review {
+  border-top: 1px solid black;
+}
+
+.desc1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.desc1 p {
+  margin-right: 20px;
+  padding: 5px 5px;
+}
+
+.e:hover {
+  background-color: rgba(128, 128, 128, 0.406);
+}
+
+.desc1 h2 {
+  padding: 0px;
 }

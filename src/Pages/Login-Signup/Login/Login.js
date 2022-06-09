@@ -31,12 +31,12 @@ function Login() {
         className="logbut"
         onClick={() => {
           axios
-            .post("http://127.0.0.1:8000/api/token/", {
+            .post("http://recipe1api.herokuapp.com/api/token/", {
               username: username,
               password: password,
             })
             .then((Response) => {
-              navigate("home/", {
+              navigate("/", {
                 state: {
                   username: username,
                   access: Response.data.access,

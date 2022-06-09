@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="main">
       <Routes>
-        <Route exact path="/:recipe" element={<Main></Main>}></Route>
+        <Route path="/:recipe" element={<Main></Main>}></Route>
         <Route
           exact
           path="/authentication"
