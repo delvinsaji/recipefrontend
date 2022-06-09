@@ -1,0 +1,39 @@
+.ls {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 40%;
+  margin-top: 80px;
+}
+
+.lsbuttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active {
+  height: 40px;
+  width: 50%;
+  background-color: antiquewhite;
+  border: none;
+  color: black;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  transition: 0.2s;
+}
+
+.deactive {
+  height: 40px;
+  transition: 0.2s;
+  color: white;
+  width: 50%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.deactive:hover {
+  background-color: rgba(250, 235, 215, 0.306);
+}

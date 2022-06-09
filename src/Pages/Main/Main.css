@@ -1,0 +1,17 @@
+.recipe {
+  background-color: beige;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 93%;
+  height: 550px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.list {
+  width: 30%;
+  height: 100%;
+  border-right: 1px solid black;
+}
