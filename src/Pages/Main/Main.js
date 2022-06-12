@@ -21,6 +21,10 @@ function Main() {
   const [addreview, setAddreview] = useState("addreview");
   const [rating, setRating] = useState();
   const [desc, setDesc] = useState();
+  const [search, setSearch] = useState();
+  const [searchbox, setSearchbox] = useState("addsearch");
+  const [searchdata, setSearchdata] = useState([]);
+
   useEffect(() => {
     axios
       .get("https://recipe1api.herokuapp.com/api/all_recipe")
@@ -55,11 +59,31 @@ function Main() {
   }, [recipe]);
 
   const [adup, setAdup] = useState(1);
-
   return (
     <div className="recipe">
       <div className="list">
         <h3>Recipe List</h3>
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              setSearchbox("addsearch1");
+              axios
+                .get(`https://recipe1api.herokuapp.com/api/search/${search}`)
+                .then((Response) => {
+                  setSearchdata(Response.data);
+                })
+                .catch((error) => {
+                  alert(error.data);
+                });
+            }
+          }}
+          placeholder="Search Recipe"
+        ></input>
         {all_recipe
           ? all_recipe.map((obj) => (
               <div>
@@ -83,6 +107,9 @@ function Main() {
           onClick={() => {
             setAdd("addrecipe1");
             setAdup(1);
+            setPrep("");
+            setName("");
+            setIngredients([]);
           }}
         >
           + Add Recipe
@@ -186,6 +213,9 @@ function Main() {
                 </div>
               ))
             : "null"}
+          <p style={{ fontSize: "10px" }}>
+            Hit enter after typing each ingredient to add further ingredints
+          </p>
           <input
             type="text"
             value={ingredient}
@@ -306,6 +336,27 @@ function Main() {
             Add Review
           </button>
         </div>
+      </div>
+      <div className={searchbox}>
+        {searchdata.map((obj) => (
+          <p
+            className="r"
+            onClick={() => {
+              navigate(`/${obj.name}`, {
+                state: {
+                  username: location.state ? location.state.username : "",
+                  access: location.state ? location.state.access : "",
+                  refresh: location.state ? location.state.refresh : "",
+                },
+              });
+              setSearchbox("addsearch");
+              setSearch("");
+              setSearchdata([]);
+            }}
+          >
+            {obj.name}
+          </p>
+        ))}
       </div>
     </div>
   );
