@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Login() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +37,7 @@ function Login() {
               password: password,
             })
             .then((Response) => {
-              navigate("/r", {
+              navigate(`/${location.state.rec}`, {
                 state: {
                   username: username,
                 },

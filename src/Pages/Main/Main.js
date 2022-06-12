@@ -62,6 +62,7 @@ function Main() {
   return (
     <div className="recipe">
       <div className="list">
+        {location.state ? <p>Hello {location.state.username}</p> : ""}
         <h3>Recipe List</h3>
         <input
           className="search"
