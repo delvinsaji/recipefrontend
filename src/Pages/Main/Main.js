@@ -96,8 +96,6 @@ function Main() {
                     navigate(`/${obj.name}`, {
                       state: {
                         username: location.state ? location.state.username : "",
-                        access: location.state ? location.state.access : "",
-                        refresh: location.state ? location.state.refresh : "",
                       },
                     });
                   }}
@@ -349,8 +347,6 @@ function Main() {
               navigate(`/${obj.name}`, {
                 state: {
                   username: location.state ? location.state.username : "",
-                  access: location.state ? location.state.access : "",
-                  refresh: location.state ? location.state.refresh : "",
                 },
               });
               setSearchbox("addsearch");

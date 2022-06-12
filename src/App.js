@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <div className="main">
+      <h1 style={{ textAlign: "center" }}>The Recipe App</h1>
       <Routes>
         <Route path="/:recipe" element={<Main></Main>}></Route>
         <Route

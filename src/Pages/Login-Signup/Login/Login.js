@@ -39,8 +39,6 @@ function Login() {
               navigate("/r", {
                 state: {
                   username: username,
-                  access: Response.data.access,
-                  refresh: Response.data.refresh,
                 },
               });
             })
