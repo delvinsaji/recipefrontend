@@ -36,7 +36,7 @@ function Login() {
               password: password,
             })
             .then((Response) => {
-              navigate("/", {
+              navigate("/r", {
                 state: {
                   username: username,
                   access: Response.data.access,

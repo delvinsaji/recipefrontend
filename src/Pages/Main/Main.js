@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Main.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Main() {
+  const location = useLocation();
   const [all_recipe, setAll_recipe] = useState();
   const [recipe1, setRecipe1] = useState();
   const [add, setAdd] = useState("addrecipe");
@@ -18,6 +19,8 @@ function Main() {
   const [adding, setAdding] = useState([]);
   const [change, setChange] = useState(0);
   const [addreview, setAddreview] = useState("addreview");
+  const [rating, setRating] = useState();
+  const [desc, setDesc] = useState();
   useEffect(() => {
     axios
       .get("https://recipe1api.herokuapp.com/api/all_recipe")
@@ -50,6 +53,7 @@ function Main() {
         alert(error.data);
       });
   }, [recipe]);
+
   const [adup, setAdup] = useState(1);
 
   return (
@@ -61,8 +65,13 @@ function Main() {
               <div>
                 <p
                   onClick={() => {
-                    navigate(`/${obj.name}`);
-                    navigate.go(`/${obj.name}`);
+                    navigate(`/${obj.name}`, {
+                      state: {
+                        username: location.state ? location.state.username : "",
+                        access: location.state ? location.state.access : "",
+                        refresh: location.state ? location.state.refresh : "",
+                      },
+                    });
                   }}
                 >
                   {obj.name}
@@ -249,11 +258,48 @@ function Main() {
       <div className={addreview}>
         <div className="inside">
           <p>
-            Rating: <input className="ooh" type="number"></input>/5
+            Rating:{" "}
+            <input
+              className="ooh"
+              type="number"
+              value={rating}
+              onChange={(e) => {
+                setRating(e.target.value);
+              }}
+            ></input>
+            /5
           </p>
-          <input type="text" placeholder="Review"></input>
+          <input
+            type="text"
+            placeholder="Review"
+            value={desc}
+            onChange={(e) => {
+              setDesc(e.target.value);
+            }}
+          ></input>
           <button
             onClick={() => {
+              try {
+                let a = location.state.username === "";
+              } catch {
+                navigate("/authentication");
+              } finally {
+                axios
+                  .post(
+                    `https://recipe1api.herokuapp.com/api/add_review/${recipe}/`,
+                    {
+                      username: location.state.username,
+                      desc: desc,
+                      rating: rating,
+                    }
+                  )
+                  .then((Response) => {
+                    alert(Response.data);
+                  })
+                  .catch((error) => {
+                    alert(error.data);
+                  });
+              }
               setAddreview("addreview");
             }}
           >
