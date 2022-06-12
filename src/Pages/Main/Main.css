@@ -162,3 +162,16 @@ h3 {
 .r:hover {
   background-color: rgba(128, 128, 128, 0.5);
 }
+
+#ok:hover {
+  background: none;
+}
+
+#ok {
+  margin-top: 0px;
+}
+
+.search {
+  margin-bottom: 0px;
+  border: 1px solid black;
+}

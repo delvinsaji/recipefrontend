@@ -64,6 +64,7 @@ function Main() {
       <div className="list">
         <h3>Recipe List</h3>
         <input
+          className="search"
           type="text"
           value={search}
           onChange={(e) => {
@@ -84,6 +85,9 @@ function Main() {
           }}
           placeholder="Search Recipe"
         ></input>
+        <p id="ok" style={{ fontSize: "10px", textAlign: "center" }}>
+          Hit Enter to show the search results{" "}
+        </p>
         {all_recipe
           ? all_recipe.map((obj) => (
               <div>
