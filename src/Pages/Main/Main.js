@@ -16,7 +16,8 @@ function Main() {
   const [name, setName] = useState();
   const [deleteing, setDeleteing] = useState([]);
   const [adding, setAdding] = useState([]);
-
+  const [change, setChange] = useState(0);
+  const [addreview, setAddreview] = useState("addreview");
   useEffect(() => {
     axios
       .get("https://recipe1api.herokuapp.com/api/all_recipe")
@@ -30,6 +31,17 @@ function Main() {
 
   useEffect(() => {
     axios
+      .get("https://recipe1api.herokuapp.com/api/all_recipe")
+      .then((Response) => {
+        setAll_recipe(Response.data);
+      })
+      .catch((error) => {
+        alert(error.data);
+      });
+  }, [change]);
+
+  useEffect(() => {
+    axios
       .get(`https://recipe1api.herokuapp.com/api/recipe/${recipe}`)
       .then((Response) => {
         setRecipe1(Response.data);
@@ -38,8 +50,8 @@ function Main() {
         alert(error.data);
       });
   }, [recipe]);
-
   const [adup, setAdup] = useState(1);
+
   return (
     <div className="recipe">
       <div className="list">
@@ -78,6 +90,7 @@ function Main() {
                   .then((Response) => {
                     alert(Response.data);
                   });
+                setChange(change + 1);
               }}
               className="e"
             >
@@ -90,6 +103,9 @@ function Main() {
                 setAdup(2);
                 setName(recipe1.name);
                 setPrep(recipe1.prep);
+                recipe1.ingredients.map((obj) => {
+                  ingredients.push(obj.ingredient);
+                });
               }}
             >
               Update Recipe
@@ -113,7 +129,14 @@ function Main() {
                 </div>
               ))
             : "null"}
-          <p className="e">+ Add Review</p>
+          <p
+            onClick={() => {
+              setAddreview("addreview1");
+            }}
+            className="e"
+          >
+            + Add Review
+          </p>
         </div>
       </div>
       <div className={add}>
@@ -168,6 +191,7 @@ function Main() {
                   setIngredient("");
                 } else {
                   setAdding([...adding, ingredient]);
+                  setIngredients([...ingredients, ingredient]);
                   setIngredient("");
                 }
               }
@@ -193,23 +217,47 @@ function Main() {
                     ingredients: ingredients,
                   }
                 );
+                setChange(change + 1);
               } else {
                 console.log(deleteing);
                 console.log(adding);
-                axios.post(
-                  `https://recipe1api.herokuapp.com/api/update/${recipe}/`,
-                  {
-                    name: name,
-                    prep: prep,
-                    delete_ingredient: deleteing,
-                    create_ingredient: adding,
-                  }
-                );
+                axios
+                  .post(
+                    `https://recipe1api.herokuapp.com/api/update/${recipe}/`,
+                    {
+                      name: name,
+                      prep: prep,
+                      delete_ingredient: deleteing,
+                      create_ingredient: adding,
+                    }
+                  )
+                  .then((Response) => {
+                    alert(Response.data);
+                  })
+                  .catch((error) => {
+                    alert(error.data);
+                  });
+                setChange(change + 1);
               }
               setAdd("addrecipe");
             }}
           >
             {adup === 1 ? "Add Recipe" : "Update Recipe"}
+          </button>
+        </div>
+      </div>
+      <div className={addreview}>
+        <div className="inside">
+          <p>
+            Rating: <input className="ooh" type="number"></input>/5
+          </p>
+          <input type="text" placeholder="Review"></input>
+          <button
+            onClick={() => {
+              setAddreview("addreview");
+            }}
+          >
+            Add Review
           </button>
         </div>
       </div>
