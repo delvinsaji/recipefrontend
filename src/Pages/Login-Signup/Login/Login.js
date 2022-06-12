@@ -31,7 +31,7 @@ function Login() {
         className="logbut"
         onClick={() => {
           axios
-            .post("http://recipe1api.herokuapp.com/api/token/", {
+            .post("https://recipe1api.herokuapp.com/api/token/", {
               username: username,
               password: password,
             })
