@@ -105,7 +105,7 @@ function Main() {
                 </p>
               </div>
             ))
-          : "null"}
+          : ""}
         <p
           onClick={() => {
             setAdd("addrecipe1");
@@ -155,9 +155,9 @@ function Main() {
         <ul>
           {recipe1
             ? recipe1.ingredients.map((obj) => <li>{obj.ingredient}</li>)
-            : "null"}
+            : ""}
         </ul>
-        <p>{recipe1 ? recipe1.prep : "null"}</p>
+        <p>{recipe1 ? recipe1.prep : ""}</p>
         <div className="reviews">
           <h4>Reviews</h4>
           {recipe1
@@ -167,7 +167,7 @@ function Main() {
                   <p>{obj.desc}</p>
                 </div>
               ))
-            : "null"}
+            : ""}
           <p
             onClick={() => {
               setAddreview("addreview1");
@@ -215,7 +215,7 @@ function Main() {
                   />
                 </div>
               ))
-            : "null"}
+            : ""}
           <p style={{ fontSize: "10px" }}>
             Hit enter after typing each ingredient to add further ingredints
           </p>
