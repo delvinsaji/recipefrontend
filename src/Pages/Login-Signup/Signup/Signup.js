@@ -42,7 +42,7 @@ function Signup(props) {
           className="logbut"
           onClick={() => {
             axios
-              .post("http://recipe1api.herokuapp.com/api/create_user/", {
+              .post("https://recipe1api.herokuapp.com/api/create_user/", {
                 username: username,
                 password: password,
                 name: name,
