@@ -210,7 +210,7 @@ function Main() {
                         );
                       }
                     }}
-                    src="https://cdn-icons.flaticon.com/png/128/1620/premium/1620739.png?token=exp=1654797391~hmac=477594fad0825da151a766ae15ed4bee"
+                    src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png"
                     width={10}
                   />
                 </div>
